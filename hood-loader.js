@@ -3,7 +3,7 @@
   if (!loader) return;
 
   var reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  var minMs = reducedMotion ? 400 : 1400;
+  var minMs = reducedMotion ? 800 : 3000;
 
   function dismiss() {
     var start = loader.dataset.start
