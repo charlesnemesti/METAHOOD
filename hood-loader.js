@@ -1,28 +1,42 @@
 (function () {
   var loader = document.getElementById("hood-loader");
-  if (!loader) return;
+  if (!loader || loader.dataset.dismissed === "1") return;
 
   var reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   var minMs = reducedMotion ? 800 : 3000;
+  var pageStart =
+    window.__hoodLoadStart ||
+    (typeof performance !== "undefined" && performance.timeOrigin
+      ? performance.timeOrigin
+      : Date.now());
+  var fadeMs = reducedMotion ? 150 : 550;
+  var loadDone = document.readyState === "complete";
+  var scheduled = false;
 
-  function dismiss() {
-    var start = loader.dataset.start
-      ? Number(loader.dataset.start)
-      : Date.now();
-    var wait = Math.max(0, minMs - (Date.now() - start));
+  document.body.style.overflow = "hidden";
+
+  function hideLoader() {
+    loader.classList.add("hood-loader-out");
     window.setTimeout(function () {
-      loader.classList.add("hood-loader-out");
-      window.setTimeout(function () {
-        loader.remove();
-      }, reducedMotion ? 150 : 550);
-    }, wait);
+      loader.remove();
+      document.body.style.overflow = "";
+    }, fadeMs);
   }
 
-  loader.dataset.start = String(Date.now());
+  function scheduleDismiss() {
+    if (scheduled || !loadDone) return;
+    scheduled = true;
+    loader.dataset.dismissed = "1";
 
-  if (document.readyState === "complete") {
-    dismiss();
-  } else {
-    window.addEventListener("load", dismiss, { once: true });
+    var wait = Math.max(0, minMs - (Date.now() - pageStart));
+    window.setTimeout(hideLoader, wait);
   }
+
+  function onLoad() {
+    loadDone = true;
+    scheduleDismiss();
+  }
+
+  window.addEventListener("load", onLoad, { once: true });
+  if (loadDone) scheduleDismiss();
 })();
