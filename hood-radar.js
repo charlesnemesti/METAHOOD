@@ -4,21 +4,21 @@
       id: "001",
       label: "NOXA LAUNCH",
       code: "NX-01",
-      text: "signal intercepted: $METAHOOD deploying on NOXA. robinhood chain confirmed. hood stays on. trenches notified.",
-      stamp: "HOOD APPROVED",
+      text: "signal intercepted: $ROBINMASK deploying on NOXA. robinhood chain confirmed. mask stays on. trenches notified.",
+      stamp: "MASK APPROVED",
     },
     {
       id: "002",
       label: "LP LOCKED",
       code: "LP-77",
-      text: "liquidity pool sealed permanently. no migration. no rug. only hood. vault access: denied to paper hands.",
+      text: "liquidity pool sealed permanently. no migration. no rug. only fox. vault access: denied to paper hands.",
       stamp: "LP LOCKED",
     },
     {
       id: "003",
       label: "ANON MODE",
       code: "AN-42",
-      text: "connecting wallet: optional. connecting your hood: mandatory. identity stripped. fox off-grid. vibes immaculate.",
+      text: "connecting wallet: optional. wearing the mask: mandatory. identity stripped. fox off-grid. vibes immaculate.",
       stamp: "ANON ON",
     },
     {
@@ -32,19 +32,20 @@
       id: "005",
       label: "GAS TANK",
       code: "GS-00",
-      text: "robinhood chain gas: basically free. tank reading empty but tx still confirming. hood council not concerned.",
+      text: "robinhood chain gas: basically free. tank reading empty but tx still confirming. fox council not concerned.",
       stamp: "GAS OK",
     },
     {
       id: "006",
-      label: "HOOD UPGRADE",
-      code: "HU-88",
-      text: "equality patch deployed. equally anon. equally degen. equally in the hood. fox upgrade complete.",
+      label: "MASK UPGRADE",
+      code: "MU-88",
+      text: "equality patch deployed. equally anon. equally degen. equally behind the mask. fox upgrade complete.",
       stamp: "UPGRADED",
     },
   ];
 
-  var TWITTER = "https://x.com/MetaHoodX";
+  var TWITTER = "https://x.com/RobinMaskRH";
+  var TELEGRAM = "https://t.me/RobinMaskRH";
   var typeTimer = null;
 
   function mount() {
@@ -57,8 +58,8 @@
       inner.innerHTML =
         '<div class="flex flex-col text-left items-start">' +
         '<p class="font-mono text-xs uppercase tracking-widest text-red-primary mb-4">◈ INTERCEPT FEED</p>' +
-        '<h2 class="font-section text-[clamp(1.8rem,3vw,2.8rem)] font-bold uppercase leading-[1.1] text-cream mb-[28px]">HOOD SIGNAL</h2>' +
-        '<p class="text-xl text-cream/60 max-w-2xl">intercept transmissions from the hood. click a blip on the radar to decode.</p>' +
+        '<h2 class="font-section text-[clamp(1.8rem,3vw,2.8rem)] font-bold uppercase leading-[1.1] text-cream mb-[28px]">FOX SIGNAL</h2>' +
+        '<p class="text-xl text-cream/60 max-w-2xl">intercept transmissions from the fox. click a blip on the radar to decode.</p>' +
         "</div>" +
         '<div id="hood-signal-root" class="mt-8"></div>';
       root = document.getElementById("hood-signal-root");
@@ -70,7 +71,7 @@
     root.innerHTML =
       '<div class="hood-signal-layout">' +
       '  <div class="hood-radar-wrap">' +
-      '    <div class="hood-radar" role="img" aria-label="Hood signal radar">' +
+      '    <div class="hood-radar" role="img" aria-label="Fox signal radar">' +
       '      <svg class="hood-radar-svg" viewBox="0 0 400 400" aria-hidden="true">' +
       '        <circle cx="200" cy="200" r="188" class="hood-radar-ring hood-radar-ring-outer"/>' +
       '        <circle cx="200" cy="200" r="140" class="hood-radar-ring"/>' +
@@ -88,7 +89,7 @@
       "      </svg>" +
       '      <div class="hood-radar-blips" id="hood-radar-blips"></div>' +
       '      <div class="hood-radar-hud">' +
-      '        <span class="hood-radar-hud-label">HOOD SIGNAL</span>' +
+      '        <span class="hood-radar-hud-label">FOX SIGNAL</span>' +
       '        <span class="hood-radar-hud-status loop-dot-pulse">SCANNING</span>' +
       "      </div>" +
       "    </div>" +
@@ -136,11 +137,14 @@
     });
 
     var footer = document.createElement("div");
-    footer.className = "mt-12 text-center";
+    footer.className = "mt-12 flex flex-wrap items-center justify-center gap-4";
     footer.innerHTML =
       '<a href="' +
       TWITTER +
-      '" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 border-2 border-red-primary/40 bg-soviet-black/60 px-6 py-3 font-display text-sm tracking-widest text-cream/70 transition hover:border-red-primary hover:text-cream">MONITOR ALL TRANSMISSIONS →</a>';
+      '" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 border-2 border-red-primary/40 bg-soviet-black/60 px-6 py-3 font-display text-sm tracking-widest text-cream/70 transition hover:border-red-primary hover:text-cream">TWITTER / X →</a>' +
+      '<a href="' +
+      TELEGRAM +
+      '" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 border-2 border-red-primary/40 bg-soviet-black/60 px-6 py-3 font-display text-sm tracking-widest text-cream/70 transition hover:border-red-primary hover:text-cream">TELEGRAM →</a>';
     root.appendChild(footer);
 
     selectSignal(0);
